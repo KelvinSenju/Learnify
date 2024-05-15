@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Like Dislike Buttons</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+    .like-dislike-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .like-button, .dislike-button {
+        cursor: pointer;
+        font-size: 24px;
+        color: #888;
+    }
+
+    .like-button.selected, .dislike-button.selected {
+        color: #00f; /* Change color for selected button */
+    }
+</style>
+</head>
+<body>
+
+<div class="like-dislike-container">
+    <div class="like-button material-icons" onclick="handleLike()">thumb_up</div>
+    <div class="like-count">0</div>
+    <div class="dislike-button material-icons" onclick="handleDislike()">thumb_down</div>
+    <div class="dislike-count">0</div>
+</div>
+
+<script>
+    let likeCount = 0;
+    let dislikeCount = 0;
+
+    function handleLike() {
+        if (!document.querySelector('.like-button').classList.contains('selected')) {
+            likeCount++;
+            document.querySelector('.like-count').textContent = likeCount;
+            document.querySelector('.like-button').classList.add('selected');
+            document.querySelector('.dislike-button').classList.remove('selected');
+            // Reset dislike count
+            dislikeCount = 0;
+            document.querySelector('.dislike-count').textContent = dislikeCount;
+        }
+    }
+
+    function handleDislike() {
+        if (!document.querySelector('.dislike-button').classList.contains('selected')) {
+            dislikeCount++;
+            document.querySelector('.dislike-count').textContent = dislikeCount;
+            document.querySelector('.dislike-button').classList.add('selected');
+            document.querySelector('.like-button').classList.remove('selected');
+            // Reset like count
+            likeCount = 0;
+            document.querySelector('.like-count').textContent = likeCount;
+        }
+    }
+</script>
+
+</body>
+</html>
